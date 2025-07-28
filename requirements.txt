@@ -1,0 +1,9 @@
+pandas
+numpy
+requests
+openpyxl        # read xlsx population files
+country_converter
+matplotlib
+jupyterlab      # for optional notebooks
+papermill       # automate notebook → HTML
+pyarrow

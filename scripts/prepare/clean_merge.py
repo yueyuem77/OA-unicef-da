@@ -40,17 +40,17 @@ def load_and_clean(dataset_name, raw_path, out_path):
     return df
 
 def merge_all(anc4, sba, raw_path, out_path):
-    print("Merging ANC4, SAB, births, and track-status data...")
+    print("Merging ANC4, SBA, births, and track-status data...")
 
     # Merge ANC4 and SAB on iso3 and year
-    merged = anc4.merge(sba, on=['iso3', 'year'], suffixes=('_anc4', '_sab'))
+    merged = anc4.merge(sba, on=['iso3', 'year'], suffixes=('_anc4', '_sba'))
     merged = merged.rename(columns={
         'OBS_VALUE_anc4': 'anc4_coverage',
-        'OBS_VALUE_sab': 'sab_coverage'
+        'OBS_VALUE_sba': 'sba_coverage'
     })
-    merged = merged[['iso3', 'year', 'anc4_coverage', 'sab_coverage']]
-    merged.to_csv(out_path / f"merged_anc4_sab_cleaned.csv", index=False)
-    print(f"  ➤ Merged ANC4 & SAB: {merged.shape[0]} rows")
+    merged = merged[['iso3', 'year', 'anc4_coverage', 'sba_coverage']]
+    merged.to_csv(out_path / f"merged_anc4_sba_cleaned.csv", index=False)
+    print(f"  ➤ Merged ANC4 & SBA: {merged.shape[0]} rows")
 
     # Load births
     births_file = raw_path / "WPP2022_GEN_F01_DEMOGRAPHIC_INDICATORS_COMPACT_REV1.xlsx"

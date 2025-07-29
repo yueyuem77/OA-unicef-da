@@ -1,7 +1,8 @@
 # UNICEF Maternal Health Coverage Analysis
 
-This repository contains a data processing and analysis pipeline to assess maternal health coverage across countries, using population-weighted indicators for antenatal care and skilled birth attendance. The project focuses on comparing coverage between "on-track" and "off-track" countries based on under-five mortality classifications.
-
+This repository was created as part of a take-home data analysis assessment for the **Consultancy, Data & Analytics** position at UNICEF. It contains a full end-to-end workflow for analyzing maternal health coverage metrics across countries and generating a reproducible report.
+Applicant: Yueyeu Min
+Postion Applied: Administrative Data Analyst – Req. #581696
 ---
 
 ## 📁 Project Structure
@@ -10,18 +11,20 @@ This repository contains a data processing and analysis pipeline to assess mater
 Consultancy-Assessment/
 ├── data/
 │   ├── raw/                  # Original input files (CSV/XLSX)
-│   └── interim/              # Cleaned and merged datasets
+│   └── interim/              # Cleaning and merging datasets for validation
+│   └── processed/            # Final Cleaned and merged datasets
+
 ├── outputs/
 │   ├── weighted_results.csv  # Population-weighted averages by group
 │   └── weighted_plot.png     # Visualization comparing coverage
 ├── scripts/
-│   ├── prepare/
-│   │   └── pipeline.py       # Cleaning + merging all input data
-│   └── analysis/
-│       └── weighted_coverage.py # Weighted calculation + plotting
+│   ├── pipeline.py       # Cleaning + merging all input data
+│   └── weighted_coverage.py # Weighted calculation + plotting
 ├── notebooks/
-│   └── 02_weighted_coverage_report.ipynb # Final report notebook
+│   └── report.ipynb # Final report notebook
 ├── README.md
+└── requirements.txt
+└── run_project.py            #executes the workflow end-to-end, producing the final output 
 ```
 
 ---
@@ -40,64 +43,64 @@ Consultancy-Assessment/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/yueyuem77/OA-unicef-da.git
 cd your-repo-name
 ```
 
-### 2. Create virtual environment & install dependencies
+### 2. Load user profile: include create venv and install dependencies
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+source user_profile.sh
 ```
 
 > If `country_converter` is used, make sure to install:
 ```bash
 pip install country_converter
 ```
-
-### 3. Run the data preparation pipeline
+Place this file in the root directory and define variables like:
 
 ```bash
-python scripts/prepare/pipeline.py
+# user_profile.sh
+export DATA_PATH="./data"
+export REPORT_AUTHOR="Yueyue Min"
 ```
 
-This loads, cleans, and merges:
-- ANC4 and SBA datasets
-- 2022 births projection from UN WPP
-- On-/off-track country status
+You can then access these environment variables in your Python scripts using:
 
-Outputs: `data/interim/coverage_2022_merged.csv`
+```bash
+import os
+data_path = os.environ.get("DATA_PATH")
+```
 
 ---
 
-### 4. Run the analysis
+### 3. Run the full pipeline (ETL + analysis + reporting)
 
 ```bash
-python scripts/analysis/weighted_coverage.py
+python run_project.py
 ```
 
-This computes population-weighted coverage for on-track and off-track groups and saves the final plot and results to the `outputs/` folder.
+This script:
+- Cleans and merges raw ANC4, SBA, and births data
+- Computes population-weighted coverage for each group (on-track/off-track)
+- Exports the final HTML report include the Data Visualization and an Analysis
 
 ---
 
-### 5. View the report
+### 4. View the report
 
-Open the final HTML report:
+Open this file in your browser:
+
 ```
-notebooks/02_weighted_coverage_report.html
+notebooks/report.html
 ```
 
 ---
 
 ## ✅ Notes
 
-- All intermediate data files are saved to the `interim/` and `outputs/` folders for transparency and reproducibility.
-- The pipeline assumes that all raw files are correctly placed under `data/raw/`.
+- Only country-level ISO3 codes were retained in the merged datasets
+- Projected births from 2022 are used as weights
+- All intermediate files are available for validation in `data/interim/` and final outputs in `data/processed/` and `outputs/`
 
----
 
-## 📄 License
-
-This repository is provided for assessment and educational purposes.

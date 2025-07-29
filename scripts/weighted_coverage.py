@@ -58,7 +58,7 @@ def plot_comparison(results, output_path):
 
 
 def main():
-    ROOT = Path(__file__).resolve().parents[2]
+    ROOT = Path(__file__).resolve().parents[1]
     merged_path = ROOT / "data" / "interim" / "coverage_2022_merged.csv"
     output_csv = ROOT / "data" / "processed" / "weighted_results.csv"
     output_plot = ROOT / "outputs" / "weighted_plot.png"

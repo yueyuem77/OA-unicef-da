@@ -1,7 +1,6 @@
 # UNICEF Maternal Health Coverage Analysis
 
 This repository was created as part of a take-home data analysis assessment for the **Consultancy, Data & Analytics** position at UNICEF. It contains a full end-to-end workflow for analyzing maternal health coverage metrics across countries and generating a reproducible report.
-Applicant: Yueyeu Min
 Postion Applied: Administrative Data Analyst – Req. #581696
 ---
 
@@ -62,7 +61,7 @@ Place this file in the root directory and define variables like:
 ```bash
 # user_profile.sh
 export DATA_PATH="./data"
-export REPORT_AUTHOR="Yueyue Min"
+export REPORT_AUTHOR="First Last"
 ```
 
 You can then access these environment variables in your Python scripts using:

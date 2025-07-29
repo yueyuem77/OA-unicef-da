@@ -18,9 +18,9 @@ def export_report():
         "jupyter", "nbconvert",
         "--to", "html",
         "--no-input",
-        str(ROOT / "notebooks/report.ipynb")
+        str(ROOT / "notebooks/report.ipynb"),
+        "--output-dir", str(ROOT / "outputs")
     ], check=True)
-
 if __name__ == "__main__":
     run_pipeline()
     run_analysis()

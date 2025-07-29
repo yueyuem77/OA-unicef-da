@@ -91,7 +91,7 @@ This script:
 Open this file in your browser:
 
 ```
-notebooks/report.html
+output/report.html
 ```
 
 ---

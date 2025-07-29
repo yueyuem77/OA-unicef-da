@@ -7,3 +7,4 @@ matplotlib
 jupyterlab      # for optional notebooks
 papermill       # automate notebook → HTML
 pyarrow
+seaborn
